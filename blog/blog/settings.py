@@ -80,11 +80,11 @@ DATABASES = {
         # 'ENGINE': 'django.db.backends.sqlite3',
         # 'NAME': BASE_DIR / 'db.sqlite3',
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'iti_blog_project',
+        'NAME': '#Enter your database',
         'HOST': 'localhost',
         'PORT': '5432',
         'USER': 'postgres',
-        'PASSWORD': 'fatmanmnm9090'
+        'PASSWORD': '#Password'
     }
 }
 
@@ -136,6 +136,6 @@ TAGGIT_CASE_INSENSITIVE = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = '587'
-EMAIL_HOST_USER = 'itimans2022@gmail.com'
-EMAIL_HOST_PASSWORD = 'sxdggpcfaeamwppe'
+EMAIL_HOST_USER = '#Enter your email'
+EMAIL_HOST_PASSWORD = '#Password'
 EMAIL_USE_TLS = True
