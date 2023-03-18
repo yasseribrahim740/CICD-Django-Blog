@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+        - name: db
+          image: postgres
+          envFrom:
+            - configMapRef:
+                name: django-web-blog-config
+
+          ports:
+            - name: postgresql
+              containerPort: 5432
+          volumeMounts:
+            - name: my-db-data
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: my-db-data
+          emptyDir: {}
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db
+spec:
+  selector:
+    app: db
+  ports:
+    - name: postgresql
+      protocol: TCP
+      port: 5432
+      targetPort: 5432
