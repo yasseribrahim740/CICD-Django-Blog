@@ -2,7 +2,7 @@ pipeline {
     agent any
  
        environment {
-        KUBECONFIG = credentials('minikube')
+        KUBECONFIG = credentials('mohsen')
     }
     stages {
     
