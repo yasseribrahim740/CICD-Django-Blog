@@ -105,3 +105,11 @@
     name: kubelet.service
     enabled: yes
     daemon_reload: yes
+
+- name: Create .kube
+  file:
+    path: ".kube/"
+    state: directory
+    mode: 0755
+
+
