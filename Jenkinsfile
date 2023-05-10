@@ -2,7 +2,7 @@ pipeline {
     agent any
  
        environment {
-        KUBECONFIG = credentials('mohsen')
+        KUBECONFIG = credentials('kube-credential')
     }
     stages {
     
@@ -16,8 +16,8 @@ pipeline {
           stage('pushing container to rpeo') {
             steps {
                 
-              withCredentials( [ usernamePassword(credentialsId: 'yasser' , passwordVariable: 'PASS' , usernameVariable: 'USER' )] ) {
-                       sh " docker login -u  $USER -p $PASS "
+              withCredentials( [ usernamePassword(credentialsId: 'docker-hub' , passwordVariable: 'PASS' , usernameVariable: 'USER' )] ) {
+                         sh " docker login -u  $USER -p $PASS "
                          sh " docker push yasser74/django_web_blog:${BUILD_NUMBER} "
                         }
             
@@ -29,7 +29,7 @@ pipeline {
             steps {   
             sh ' kubectl version'
             sh " kubectl apply  -f ./k8s/ --kubeconfig=$KUBECONFIG "
-           sh' kubectl get po -A'
+            sh' kubectl get po -A'
             
                                          
             }
