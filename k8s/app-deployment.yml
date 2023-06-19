@@ -31,10 +31,10 @@ spec:
       volumes:
         - name: my-data
           persistentVolumeClaim:
-            claimName: django-web-blog-media-claim
+            claimName: app-pvc
       containers:
         - name: web
-          image: yasser74/django_web_blog:${BUILD_NUMBER} 
+          image: yasser74/django_web_blog:${BUILD_NUMBER}
           command: ["sh", "-c", "python manage.py migrate && python manage.py makemigrations &&  python manage.py createsuperuser --noinput && python manage.py runserver 0.0.0.0:8000"]
           ports:
             - name: http
