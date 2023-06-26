@@ -27,8 +27,13 @@ pipeline {
         }
         stage('deploy to k8s') {
             steps {   
-            sh ' kubectl version'
-            sh " kubectl apply  -f ./k8s/ --kubeconfig=$KUBECONFIG "
+            withCredentials([file(credentialsId: 'yasser', variable: 'KUBECONFIG_PATH')]) {
+            sh '''
+            kubectl version
+            kubectl apply -f ./k8s/ --kubeconfig=${KUBECONFIG_PATH}
+            kubectl get po -A
+             '''
+        }
             sh' kubectl get po -A'
             
                                          
