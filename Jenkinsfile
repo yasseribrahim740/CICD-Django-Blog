@@ -2,7 +2,7 @@ pipeline {
     agent any
  
        environment {
-        KUBECONFIG = credentials('kube-credential')
+        KUBECONFIG = credentials('yasser')
     }
     stages {
     
